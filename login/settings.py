@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'rest_framework',
+    'django_q',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/accounts/dashboard/'
+GOOGLE_RECAPTCHA_SECRET_KEY = '6LdRo-cUAAAAAKcoeAbnosO-S4wp1dnsp_hFc7W-'
