@@ -3,6 +3,7 @@ from .forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from ipware import get_client_ip
 from .models import *
+from .serializers import Countserializer
 # Create your views here.
 def indexView(request):
     return render(request, 'index.html')
@@ -13,9 +14,15 @@ def dashboardView(request):
 
 def registerView(request):
     ip = get_client_ip(request)
-    user = Userip(user_ip=ip[0])
-    user.save()
-    # print('---------------',type(ip[0]),ip[0])
+    queryset = Userip.objects.filter(user_ip=ip[0]).exists()
+    if queryset:
+        user = Userip.objects.filter(user_ip=ip[0]).values('count')
+        count = Countserializer(user)
+        count = count.data['count']+1
+        user.update(count=count)
+    else:
+        user = Userip(user_ip=ip[0], count=1)
+        user.save()
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
