@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'rest_framework',
-    # 'django_q',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -77,21 +77,21 @@ WSGI_APPLICATION = 'login.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'djongo',
-#         'NAME':'test',
-#         'HOST':'mongodb+srv://pranjal:pranjal@cluster0-63lve.mongodb.net/test?retryWrites=true&w=majority',
-#         'USER': 'pranjal',
-#         'PASSWORD':'pranjal',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'login_task',
+        'HOST': 'mongodb+srv://pranjal:pranjal@cluster0-63lve.mongodb.net/test?retryWrites=true&w=majority',
+        'USER': 'pranjal',
+        'PASSWORD': 'pranjal',
+    }
+}
 
 
 # Password validation
@@ -132,19 +132,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/accounts/dashboard/'
-GOOGLE_RECAPTCHA_SECRET_KEY = '6LdRo-cUAAAAAKcoeAbnosO-S4wp1dnsp_hFc7W-'
-# Q_CLUSTER = {
-#     'name': 'login',
-#     'workers': 8,
-#     'recycle': 500,
-#     'timeout': 60,
-#     'compress': True,
-#     'save_limit': 250,
-#     'queue_limit': 500,
-#     'cpu_affinity': 1,
-#     'label': 'Django Q',
-#     'redis': {
-#         'host': '127.0.0.1',
-#         'port': 6379,
-#         'db': 0, }
-# }
+RECAPTCHA_PUBLIC_KEY = '6LdRo-cUAAAAABXymEibarrG21fCwKaWpjfEi4S9'
+RECAPTCHA_PRIVATE_KEY = '6LdRo-cUAAAAAKcoeAbnosO-S4wp1dnsp_hFc7W-'
