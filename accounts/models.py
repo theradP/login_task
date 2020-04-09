@@ -1,10 +1,11 @@
 from django.db import models
-import datetime
+from datetime import date
 
 # Create your models here.
 class Userip(models.Model):
     user_ip = models.TextField(null=True)
-    date  = models.DateTimeField(default=datetime.datetime.now)
-    count = models.IntegerField(null=True)
+    date = models.DateField(default=date.today)
     class Meta:
         db_table = 'userip'
+
+
