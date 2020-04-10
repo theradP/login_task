@@ -17,15 +17,17 @@ def dashboardView(request):
 def registerView(request):
     current_date = date.today()
     ip = get_client_ip(request)
-    user = Userip(user_ip=ip[0])
-    user.save()
-    hitcount = Userip.objects.filter(user_ip=ip[0], date=current_date).count()
+
+    hits = Userip.objects.filter(user_ip=ip[0], date=current_date).count()
+    print('______------',hits)
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            user = Userip(user_ip=ip[0])
+            user.save()
             return redirect('login_url')
-    elif hitcount>3:
+    elif hits >= 3:
         form = FormWithCaptcha()
     else:
         form = UserCreationForm()
