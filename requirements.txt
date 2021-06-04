@@ -8,7 +8,7 @@ blessed==1.17.4
 bson==0.5.8
 certifi==2019.11.28
 dataclasses==0.6
-Django==2.2.12
+Django==2.2.21
 django-ipware==2.1.0
 django-picklefield==2.1.1
 django-recaptcha==2.0.6
